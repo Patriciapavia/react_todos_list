@@ -13,7 +13,7 @@ class App extends Component {
       {
         id: 2,
         title: "go for a walk",
-        completed: false,
+        completed: true,
       },
       {
         id: 3,
@@ -22,13 +22,11 @@ class App extends Component {
       },
     ],
   };
-  render() {
-    console.log(this.state.todos);
-    return (
-      <div className="App">
-        <Todos todos={this.state.todos} />
 
-        <h1>App</h1>
+  render() {
+    return (
+      <div>
+        <Todos todos={this.state.todos} />
       </div>
     );
   }
