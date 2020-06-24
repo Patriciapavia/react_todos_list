@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import Todos from "./components/Todos";
+import Header from "./components/layout/Header";
+import AddTodo from "./components/AddTodo";
+import uuid from "uuid";
 import "./App.css";
 
 class App extends Component {
@@ -22,7 +25,7 @@ class App extends Component {
       },
     ],
   };
-
+  // toggle  complete
   markComplete = (id) => {
     this.setState({
       todos: this.state.todos.map((todo) => {
@@ -33,11 +36,36 @@ class App extends Component {
       }),
     });
   };
+  // delete todo item
+
+  delTodo = (id) => {
+    this.setState({
+      todos: [...this.state.todos.filter((todo) => todo.id !== id)],
+    });
+  };
+  // add todo
+  addTodo = (title) => {
+    const newTodo = {
+      id: 4,
+      title,
+      //  title: title, same because key and value i s the same
+      completed: false,
+    };
+    this.setState({ todos: [...this.state.todos, newTodo] });
+  };
 
   render() {
     return (
-      <div>
-        <Todos todos={this.state.todos} markComplete={this.markComplete} />
+      <div className="App">
+        <div className="container">
+          <Header />
+          <Todos
+            todos={this.state.todos}
+            markComplete={this.markComplete}
+            delTodo={this.delTodo}
+          />
+          <AddTodo addTodo={this.addTodo} />
+        </div>
       </div>
     );
   }
